@@ -1,0 +1,35 @@
+
+# File: .github/workflows/repo-sync.yml
+name: sync-chinnkarahoi-repo
+on:
+  schedule:
+    - cron: '30 0,15 * * *'
+  workflow_dispatch:
+  watch:
+    types: started
+  push:
+    branches: [ master ]
+  repository_dispatch:
+    types: sync-chinnkarahoi-repo
+jobs:
+  repo-sync:
+    env:
+
+      PAT: ${{ secrets.PAT }} 
+
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: sync-chinnkarahoi-repo
+        uses: repo-sync/github-sync@v2
+        if: env.PAT
+        with:
+          source_repo: "https://github.com/chinnkarahoi/jd_scripts.git"  
+          # fallback: https://github.com/RikudouPatrickstar/jd_scripts.git
+          source_branch: "master"
+          destination_branch: "master"
+          github_token: ${{ secrets.PAT }}
