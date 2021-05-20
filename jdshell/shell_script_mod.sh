@@ -8,9 +8,9 @@ function monkcoder(){
     rm -rf /monkcoder /scripts/monkcoder_*
     git clone https://github.com/monk-coder/dust.git /monkcoder
     # 拷贝脚本
-    for jsname in $(find /monkcoder -name "*.js" | grep -vE "\/backup\/"); do cp ${jsname} /scripts/monkcoder_${jsname##*/}; done
+    for jsname in $(find /monkcoder -name "*.js" | grep -vE "\/backup\/\|\/i-chenzhe\/"); do cp ${jsname} /scripts/monkcoder_${jsname##*/}; done
     # 匹配js脚本中的cron设置定时任务
-    for jsname in $(find /monkcoder -name "*.js" | grep -vE "\/backup\/"); do
+    for jsname in $(find /monkcoder -name "*.js" | grep -vE "\/backup\/\|\/i-chenzhe\/"); do
         jsnamecron="$(cat $jsname | grep -oE "/?/?cron \".*\"" | cut -d\" -f2)"
         test -z "$jsnamecron" || echo "$jsnamecron node /scripts/monkcoder_${jsname##*/} >> /scripts/logs/monkcoder_${jsname##*/}.log 2>&1" >> /scripts/docker/merged_list_file.sh
     done
