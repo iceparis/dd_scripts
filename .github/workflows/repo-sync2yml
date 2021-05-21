@@ -8,7 +8,7 @@ on:
   watch:
     types: started
   push:
-    branches: [ master ]
+    branches: [ JDDJ ]
   repository_dispatch:
     types: sync-JDDJ-repo
 jobs:
@@ -29,6 +29,6 @@ jobs:
         if: env.PAT
         with:
           source_repo: "https://github.com/passerby-b/JDDJ.git"  
-          source_branch: "master"
-          destination_branch: "master"
+          source_branch: "JDDJ"
+          destination_branch: "JDDJ"
           github_token: ${{ secrets.PAT }}
