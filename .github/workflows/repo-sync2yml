@@ -29,6 +29,6 @@ jobs:
         if: env.PAT
         with:
           source_repo: "https://github.com/passerby-b/JDDJ.git"  
-          source_branch: "JDDJ"
+          source_branch: "main"
           destination_branch: "JDDJ"
           github_token: ${{ secrets.PAT }}
