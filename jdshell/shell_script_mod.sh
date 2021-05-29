@@ -5,9 +5,9 @@
 
 function monkcoder(){
     # https://github.com/monk-coder/dust
-    # rm -rf /monkcoder /scripts/monkcoder_*
-    git clone https://github.com/monk-coder/dust.git /monkcoder
-    # 拷贝脚本
+    rm -rf /monkcoder /scripts/monkcoder_*
+    git clone https://github.com/RikudouPatrickstar/dust.git /monkcoder
+    # 拷贝脚本https://github.com/RikudouPatrickstar/dust.git
     for jsname in $(find /monkcoder/normal -name "*.js"); do cp ${jsname} /scripts/monkcoder_${jsname##*/}; done
     # 匹配js脚本中的cron设置定时任务
     for jsname in $(find /monkcoder/normal -name "*.js"); do
