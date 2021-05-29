@@ -5,7 +5,7 @@
 
 function monkcoder(){
     # https://github.com/monk-coder/dust
-    rm -rf /monkcoder /scripts/monkcoder_*
+    # rm -rf /monkcoder /scripts/monkcoder_*
     git clone https://github.com/monk-coder/dust.git /monkcoder
     # 拷贝脚本
     for jsname in $(find /monkcoder/normal -name "*.js"); do cp ${jsname} /scripts/monkcoder_${jsname##*/}; done
