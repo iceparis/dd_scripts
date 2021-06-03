@@ -21,6 +21,7 @@ function Wenmoux(){
     rm -rf /Wenmoux /scripts/Wenmoux_*
     git clone https://github.com/Wenmoux/scripts.git /Wenmoux
     # 拷贝脚本https://github.com/Wenmoux/scripts.git
+    rm -rf /scripts/Wenmoux_jddj_help.js
     for jsname in $(find /Wenmoux/jd -name "*.js"); do cp ${jsname} /scripts/Wenmoux_${jsname##*/}; done
     # 匹配js脚本中的cron设置定时任务
     for jsname in $(find /Wenmoux/jd -name "*.js"); do
