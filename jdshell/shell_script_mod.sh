@@ -16,6 +16,20 @@ function monkcoder(){
     done
 }
 
+function Wenmoux(){
+    # https://github.com/Wenmoux/scripts
+    rm -rf /Wenmoux /scripts/Wenmoux_*
+    git clone https://github.com/Wenmoux/scripts.git /Wenmoux
+    # 拷贝脚本https://github.com/Wenmoux/scripts.git
+    rm -rf /Wenmoux /scripts/Wenmoux_jddj_help.js
+    for jsname in $(find /Wenmoux/jd -name "*.js"); do cp ${jsname} /scripts/Wenmoux_${jsname##*/}; done
+    # 匹配js脚本中的cron设置定时任务
+    for jsname in $(find /Wenmoux/jd -name "*.js"); do
+        jsnamecron="$(cat $jsname | grep -oE "/?/?cron \".*\"" | cut -d\" -f2)"
+        test -z "$jsnamecron" || echo "$jsnamecron node /scripts/Wenmoux_${jsname##*/} >> /scripts/logs/Wenmoux_${jsname##*/}.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    done
+}
+
 function redrain(){
     # https://github.com/nianyuguai/longzhuzhu
     rm -rf /longzhuzhu
@@ -34,6 +48,7 @@ function main(){
     # 首次运行时拷贝docker目录下文件
     [[ ! -d /jd_diy ]] && mkdir /jd_diy && cp -rf /scripts/docker/* /jd_diy
     monkcoder
+    Wenmoux
     redrain
     # 拷贝docker目录下文件供下次更新时对比
     cp -rf /scripts/docker/* /jd_diy
