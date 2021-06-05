@@ -22,6 +22,7 @@ function Wenmoux(){
     git clone https://github.com/Wenmoux/scripts.git /Wenmoux
     # 拷贝脚本https://github.com/Wenmoux/scripts.git
     rm -rf /Wenmoux/jd/jddj_help.js
+    rm -rf /Wenmoux/jd/jd_618redpacket.js
     for jsname in $(find /Wenmoux/jd -name "*.js"); do cp ${jsname} /scripts/Wenmoux_${jsname##*/}; done
     # 匹配js脚本中的cron设置定时任务
     for jsname in $(find /Wenmoux/jd -name "*.js"); do
@@ -41,7 +42,7 @@ function redrain(){
     for jsname in $(find /longzhuzhu/qx -name "*.js"); do cp ${jsname} /scripts/${jsname##*/}; done
     echo "30 16-23/1 * * * node /scripts/jd_half_redrain.js >> /scripts/logs/jd_half_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
     echo "0 0-23/1 * * * node /scripts/jd_super_redrain.js >> /scripts/logs/jd_super_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "1 10-23/1 1-18 6 * node /scripts/long_hby_lottery.js >> /scripts/logs/long_hby_lottery.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    echo "1 17-23/1 1-18 6 * node /scripts/long_hby_lottery.js >> /scripts/logs/long_hby_lottery.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 
 function main(){
