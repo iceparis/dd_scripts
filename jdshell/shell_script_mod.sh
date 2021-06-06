@@ -34,9 +34,6 @@ function Wenmoux(){
 function redrain(){
     # https://github.com/longzhuzhu/nianyu
     rm -rf /longzhuzhu
-    rm jd_half_redrain.js
-    rm jd_super_redrain.js
-    rm long_hby_lottery.js
     git clone https://github.com/longzhuzhu/nianyu.git /longzhuzhu
     # 拷贝脚本
     for jsname in $(find /longzhuzhu/qx -name "*.js"); do cp ${jsname} /scripts/${jsname##*/}; done
