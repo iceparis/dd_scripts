@@ -28,8 +28,8 @@ jobs:
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
-          source_repo: "https://github.com/chinnkarahoi/jd_scripts.git"  
-          # fallback: https://github.com/RikudouPatrickstar/jd_scripts.git
+          source_repo: "https://github.com/gossh520/jd_scripts.git"  
+          # fallback: https://github.com/chinnkarahoi/jd_scripts.git
           source_branch: "master"
           destination_branch: "master"
           github_token: ${{ secrets.PAT }}
