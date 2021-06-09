@@ -1,6 +1,6 @@
 
 # File: .github/workflows/repo-sync.yml
-name: sync-chinnkarahoi-repo
+name: sync-gossh520-repo
 on:
   schedule:
     - cron: '30 0,15 * * *'
@@ -10,7 +10,7 @@ on:
   push:
     branches: [ master ]
   repository_dispatch:
-    types: sync-chinnkarahoi-repo
+    types: sync-gossh520-repo
 jobs:
   repo-sync:
     env:
@@ -24,7 +24,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: sync-chinnkarahoi-repo
+      - name: sync-gossh520-repo
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
