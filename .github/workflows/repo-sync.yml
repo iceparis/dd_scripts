@@ -3,7 +3,7 @@
 name: sync-gossh520-repo
 on:
   schedule:
-    - cron: '30 0,15 * * *'
+    - cron: '0 0-23/2 * * *'
   workflow_dispatch:
   watch:
     types: started
