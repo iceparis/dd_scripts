@@ -6,7 +6,7 @@
 function redrain(){
     # https://github.com/longzhuzhu/nianyu
     rm -rf /longzhuzhu
-    git clone https://github.com/longzhuzhu/nianyu.git /longzhuzhu
+    git clone https://ghproxy.com/https://github.com/longzhuzhu/nianyu.git /longzhuzhu
     # 拷贝脚本
     for jsname in $(find /longzhuzhu/qx -name "*.js"); do cp ${jsname} /scripts/${jsname##*/}; done
     echo "30 16-23/1 * * * node /scripts/long_half_redrain.js >> /scripts/logs/long_half_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
