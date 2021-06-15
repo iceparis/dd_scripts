@@ -19,12 +19,12 @@ function jddj(){
     # clone
     rm -rf /scripts/jddj && git clone https://github.com/passerby-b/JDDJ.git /scripts/jddj
     # 下载自定义cookie文件地址,如私密的gist地址,需修改
-    jddj_cookiefile="https://raw.githubusercontent.com/iceparis/dd_scripts/JDDJ/jddj_cookie.js"
+    jddj_cookiefile="https://gist.githubusercontent.com/iceparis/a7d962fc9affa3a8a6dbfd06b57231d3/raw/0778cf5412edbc67b59de2888a88bba3b319a37a/jddj_cookie.js"
     curl -so /scripts/jddj/jddj_cookie.js $jddj_cookiefile
     # 下载cookie文件失败时从备份恢复
     test $? -eq 0 || cp -rf /scripts/jddj/backup_jddj_cookie.js /scripts/backup_jddj_cookie.js
     # 拷贝脚本
-    for jsname in $(find /scripts/jddj -name "jddj_*.js"); do cp ${jsname} /scripts/${jsname##*/}; done
+    for jsname in $(find /scripts/jddj -name "jddj_fruit*.js"); do cp ${jsname} /scripts/${jsname##*/}; done
     # 设定任务
     echo "10 0,3,8,11,17 * * * node /scripts/jddj/jddj_fruit.js >> /scripts/logs/jddj_fruit.log 2>&1" >> /scripts/docker/merged_list_file.sh
     echo "*/5 * * * * node /scripts/jddj/jddj_fruit_collectWater.js >> /scripts/logs/jddj_fruit_collectWater.log 2>&1" >> /scripts/docker/merged_list_file.sh
