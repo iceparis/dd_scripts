@@ -19,7 +19,7 @@ function jddj(){
     # clone
     rm -rf /scripts/jddj && git clone https://github.com/passerby-b/JDDJ.git /scripts/jddj
     # 下载自定义cookie文件地址,如私密的gist地址,需修改
-    jddj_cookiefile="https://gist.githubusercontent.com/iceparis/a7d962fc9affa3a8a6dbfd06b57231d3/raw/0778cf5412edbc67b59de2888a88bba3b319a37a/jddj_cookie.js"
+    jddj_cookiefile="https://gist.githubusercontent.com/iceparis/a7d962fc9affa3a8a6dbfd06b57231d3/raw/c8f9d0c0226cd441fed5c5b34508e335c322547a/jddj_cookie.js"
     curl -so /scripts/jddj/jddj_cookie.js $jddj_cookiefile
     # 下载cookie文件失败时从备份恢复
     test $? -eq 0 || cp -rf /scripts/jddj/backup_jddj_cookie.js /scripts/backup_jddj_cookie.js
