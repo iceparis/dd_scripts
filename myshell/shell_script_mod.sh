@@ -23,13 +23,15 @@ function jddj(){
     curl -so /scripts/jddj/jddj_cookie.js $jddj_cookiefile
     # 下载cookie文件失败时从备份恢复
     test $? -eq 0 || cp -rf /scripts/jddj/backup_jddj_cookie.js /scripts/backup_jddj_cookie.js
-    # 拷贝脚本
-    for jsname in $(find /scripts/jddj -name "jd_*.js"); do cp ${jsname} /scripts/${jsname##*/}; done
-    # 设定任务
-    echo "10 0,3,8,11,17 * * * node /scripts/jddj/jddj_fruit.js >> /scripts/logs/jddj_fruit.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "*/5 * * * * node /scripts/jddj/jddj_fruit_collectWater.js >> /scripts/logs/jddj_fruit_collectWater.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "30 0 * * * node /scripts/jd_dreamFactory2.js >> /scripts/logs/jd_dreamFactory2.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "10 6 * * * node /scripts/jd_fruit2.js >> /scripts/logs/jd_fruit2.log 2>&1" >> /scripts/docker/merged_list_file.sh    
+    # 获取js文件中cron字段设置定时任务
+    for jsname in $(ls /scripts/jddj | grep -E "js$" | tr "\n" " "); do
+        jsname_cn="$(grep "cron" /scripts/jddj/$jsname | grep -oE "/?/?tag\=.*" | cut -d"=" -f2)"
+        jsname_log="$(echo /scripts/jddj/$jsname | sed 's;^.*/\(.*\)\.js;\1;g')"
+        jsnamecron="$(cat /scripts/jddj/$jsname | grep -oE "/?/?cron \".*\"" | cut -d\" -f2)"
+        test -z "$jsname_cn" && jsname_cn=$jsname_log
+        test -z "$jsnamecron" || echo "# $jsname_cn" >> /scripts/docker/merged_list_file.sh
+        test -z "$jsnamecron" || echo "$jsnamecron node /scripts/jddj/$jsname >> /scripts/logs/$jsname_log.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    done 
 }
 function main(){
     # 首次运行时拷贝docker目录下文件
