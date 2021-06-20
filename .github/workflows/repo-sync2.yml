@@ -23,11 +23,11 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: sync-JDDJ-repo
+      - name: sync-update-repo
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
-          source_repo: "https://github.com/passerby-b/JDDJ.git"  
-          source_branch: "main"
-          destination_branch: "JDDJ"
+          source_repo: "https://github.com/gitupdate/updateTeam.git"  
+          source_branch: "master"
+          destination_branch: "main"
           github_token: ${{ secrets.PAT }}
