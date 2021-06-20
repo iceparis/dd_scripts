@@ -1,9 +1,9 @@
 
 # File: .github/workflows/repo-sync.yml
-name: sync-JDDJ-repo
+name: sync-update-repo
 on:
   schedule:
-    - cron: '30 1,14 * * *'
+    - cron: '30 1,4,12 * * *'
   workflow_dispatch:
   watch:
     types: started
