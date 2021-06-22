@@ -37,7 +37,7 @@ function ddo(){
     rm -rf /ddo 
     git clone https://ghproxy.com/https://github.com/hyzaw/scripts.git /ddo
     # 拷贝脚本
-    for jsname in $(find /ddo -name "*.js" | grep -vE "\/backup\/"); do cp ${jsname} /scripts/monkcoder_${jsname##*/}; done
+    for jsname in $(find /ddo -name "*.js" | grep -vE "\/backup\/"); do cp ${jsname} /scripts/${jsname##*/}; done
     # 匹配js脚本中的cron设置定时任务
     for jsname in $(find /ddo -name "*.js" | grep -vE "\/backup\/"); do
         jsnamecron="$(cat $jsname | grep -oE "/?/?cron \".*\"" | cut -d\" -f2)"
