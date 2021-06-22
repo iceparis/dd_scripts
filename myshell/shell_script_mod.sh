@@ -41,7 +41,7 @@ function ddo(){
     # 匹配js脚本中的cron设置定时任务
     for jsname in $(find /ddo -name "*.js" | grep -vE "\/backup\/"); do
         jsnamecron="$(cat $jsname | grep -oE "/?/?cron \".*\"" | cut -d\" -f2)"
-        test -z "$jsnamecron" || echo "$jsnamecron node /scripts/${jsname##*/} >> /scripts/logs/jsname##*/}.log 2>&1" >> /scripts/docker/merged_list_file.sh
+        test -z "$jsnamecron" || echo "$jsnamecron node /scripts/${jsname##*/} >> /scripts/logs/${jsname##*/}.log 2>&1" >> /scripts/docker/merged_list_file.sh
     done
 }
 function main(){
