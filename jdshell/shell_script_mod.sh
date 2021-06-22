@@ -11,13 +11,23 @@ function redrain(){
     for jsname in $(find /longzhuzhu/qx -name "*.js"); do cp ${jsname} /scripts/${jsname##*/}; done
     echo "30 16-23/1 * * * node /scripts/long_half_redrain.js >> /scripts/logs/long_half_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
     echo "0 0-23/1 * * * node /scripts/long_super_redrain.js >> /scripts/logs/long_super_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "1 20 1-18 6 * node /scripts/long_hby_lottery.js >> /scripts/logs/long_hby_lottery.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
-
+function ddo(){
+    rm -rf /ddo 
+    git clone https://ghproxy.com/https://github.com/hyzaw/scripts.git /ddo
+    # 拷贝脚本
+    for jsname in $(find /ddo -name "*.js" | grep -vE "\/backup\/"); do cp ${jsname} /scripts/monkcoder_${jsname##*/}; done
+    # 匹配js脚本中的cron设置定时任务
+    for jsname in $(find /ddo -name "*.js" | grep -vE "\/backup\/"); do
+        jsnamecron="$(cat $jsname | grep -oE "/?/?cron \".*\"" | cut -d\" -f2)"
+        test -z "$jsnamecron" || echo "$jsnamecron node /scripts/${jsname##*/} >> /scripts/logs/jsname##*/}.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    done
+}
 function main(){
     # 首次运行时拷贝docker目录下文件
     [[ ! -d /jd_diy ]] && mkdir /jd_diy && cp -rf /scripts/docker/* /jd_diy
     redrain
+    ddo
     # 拷贝docker目录下文件供下次更新时对比
     cp -rf /scripts/docker/* /jd_diy
 }
