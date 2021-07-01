@@ -31,25 +31,15 @@ function jddj(){
     echo "5 */2 * * * node /scripts/jddj/jddj_fruit_collectWater.js >> /scripts/logs/jddj_fruit_collectWater.log 2>&1" >> /scripts/docker/merged_list_file.sh
     echo "8 */2 * * * node /scripts/jddj/jddj_getPoints.js >> /scripts/logs/jddj_getPoints.log 2>&1" >> /scripts/docker/merged_list_file.sh
     echo "30 1 * * * node /scripts/jd_dreamFactory2.js >> /scripts/logs/jd_dreamFactory2.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "10 9 * * * node /scripts/jd_fruit2.js >> /scripts/logs/jd_fruit2.log 2>&1" >> /scripts/docker/merged_list_file.sh   
+    echo "10 9 * * * node /scripts/jd_fruit2.js >> /scripts/logs/jd_fruit2.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    echo "18 8,20 * * * node /scripts/jd_cfd2.js >> /scripts/logs/jd_cfd2.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
-function ddo(){
-    rm -rf /ddo 
-    git clone https://ghproxy.com/https://github.com/hyzaw/scripts.git /ddo
-    # 拷贝脚本
-    for jsname in $(find /ddo -name "*.js" | grep -vE "\/backup\/"); do cp ${jsname} /scripts/${jsname##*/}; done
-    # 匹配js脚本中的cron设置定时任务
-    for jsname in $(find /ddo -name "*.js" | grep -vE "\/backup\/"); do
-        jsnamecron="$(cat $jsname | grep -oE "/?/?cron \".*\"" | cut -d\" -f2)"
-        test -z "$jsnamecron" || echo "$jsnamecron node /scripts/${jsname##*/} >> /scripts/logs/${jsname##*/}.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    done
-}
+
 function main(){
     # 首次运行时拷贝docker目录下文件
     [[ ! -d /jd_diy ]] && mkdir /jd_diy && cp -rf /scripts/docker/* /jd_diy
     redrain
     jddj
-    ddo
     # 拷贝docker目录下文件供下次更新时对比
     cp -rf /scripts/docker/* /jd_diy
 }
