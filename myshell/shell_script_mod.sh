@@ -6,7 +6,7 @@
 function redrain(){
     # https://github.com/longzhuzhu/nianyu
     rm -rf /longzhuzhu
-    git clone https://github.com/longzhuzhu/nianyu.git /longzhuzhu
+    git clone https://github.com/iceparis/nianyu.git /longzhuzhu
     # 拷贝脚本
     for jsname in $(find /longzhuzhu/qx -name "*.js"); do cp ${jsname} /scripts/${jsname##*/}; done
     echo "30 16-23/1 * * * node /scripts/long_half_redrain.js >> /scripts/logs/long_half_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
@@ -32,7 +32,7 @@ function jddj(){
     echo "8 */2 * * * node /scripts/jddj/jddj_getPoints.js >> /scripts/logs/jddj_getPoints.log 2>&1" >> /scripts/docker/merged_list_file.sh
     echo "30 1 * * * node /scripts/jd_dreamFactory2.js >> /scripts/logs/jd_dreamFactory2.log 2>&1" >> /scripts/docker/merged_list_file.sh
     echo "10 9 * * * node /scripts/jd_fruit2.js >> /scripts/logs/jd_fruit2.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "18 8,20 * * * node /scripts/jd_cfd2.js >> /scripts/logs/jd_cfd2.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    echo "18 8 * * * node /scripts/jd_cfd2.js >> /scripts/logs/jd_cfd2.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 
 function main(){
