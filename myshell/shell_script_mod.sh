@@ -12,6 +12,15 @@ function redrain(){
     echo "30 16-23/1 * * * node /scripts/long_half_redrain.js >> /scripts/logs/long_half_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
     echo "0 0-23/1 * * * node /scripts/long_super_redrain.js >> /scripts/logs/long_super_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
+function smiek(){
+    # https://github.com/smiek2221/scripts
+    rm -rf /smiek
+    git clone https://github.com/smiek2221/scripts.git /smiek
+    # 拷贝脚本
+    for jsname in $(find /smiek -name "*.js"); do cp ${jsname} /scripts/${jsname##*/}; done
+    echo "14 10 * * * node /scripts/jd_sign_graphics.js >> /scripts/logs/jd_sign_graphics.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    echo "12 9,11,13,15,17 * * * node /scripts/jd_summer_movement.js >> /scripts/logs/jd_summer_movement.log 2>&1" >> /scripts/docker/merged_list_file.sh
+}
 function jddj(){
     # 备份cookie文件
     [[ -f /scripts/jddj/jddj_cookie.js ]] && cp -rf /scripts/jddj/jddj_cookie.js /scripts/backup_jddj_cookie.js
@@ -39,9 +48,9 @@ function main(){
     # 首次运行时拷贝docker目录下文件
     [[ ! -d /jd_diy ]] && mkdir /jd_diy && cp -rf /scripts/docker/* /jd_diy
     redrain
+    smiek
     jddj
     # 拷贝docker目录下文件供下次更新时对比
     cp -rf /scripts/docker/* /jd_diy
 }
-
 main
