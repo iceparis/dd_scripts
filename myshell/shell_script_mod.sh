@@ -41,7 +41,6 @@ function jddj(){
     echo "8 */2 * * * node /scripts/jddj/jddj_getPoints.js >> /scripts/logs/jddj_getPoints.log 2>&1" >> /scripts/docker/merged_list_file.sh
     echo "30 1 * * * node /scripts/jd_dreamFactory2.js >> /scripts/logs/jd_dreamFactory2.log 2>&1" >> /scripts/docker/merged_list_file.sh
     echo "10 9 * * * node /scripts/jd_fruit2.js >> /scripts/logs/jd_fruit2.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "18 8 * * * node /scripts/jd_cfd2.js >> /scripts/logs/jd_cfd2.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 
 function main(){
