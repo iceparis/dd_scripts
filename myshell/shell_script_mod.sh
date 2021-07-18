@@ -34,10 +34,7 @@ function jddj(){
     for jsname in $(find /scripts/jddj -name "jd_*.js"); do cp ${jsname} /scripts/${jsname##*/}; done
     # 设定任务
     echo "10 0,3,8,11,17 * * * node /scripts/jddj/jddj_fruit.js >> /scripts/logs/jddj_fruit.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "12 0 * * * node /scripts/jddj/jddj_bean.js >> /scripts/logs/jddj_bean.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "15 0 * * * node /scripts/jddj/jddj_plantBeans.js >> /scripts/logs/jddj_plantBeans.log 2>&1" >> /scripts/docker/merged_list_file.sh
     echo "5 */2 * * * node /scripts/jddj/jddj_fruit_collectWater.js >> /scripts/logs/jddj_fruit_collectWater.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "8 */2 * * * node /scripts/jddj/jddj_getPoints.js >> /scripts/logs/jddj_getPoints.log 2>&1" >> /scripts/docker/merged_list_file.sh
     echo "30 1 * * * node /scripts/jd_dreamFactory2.js >> /scripts/logs/jd_dreamFactory2.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 
