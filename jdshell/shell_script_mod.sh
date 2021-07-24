@@ -17,9 +17,10 @@ function smiek(){
     rm -rf /smiek
     git clone https://ghproxy.com/https://github.com/smiek2221/scripts.git /smiek
     # 拷贝脚本
-    for jsname in $(find /smiek -name "*.js"); do cp ${jsname} /scripts/${jsname##*/}; done
+    cp /smiek/JDJRValidator_Pure.js /scripts/JDJRValidator_Pure.js
+    cp /smiek/jd_sign_graphics.js /scripts/jd_sign_graphics.js
+    cp /smiek/sign_graphics_validate.js /scripts/sign_graphics_validate.js
     echo "10 10 * * * node /scripts/jd_sign_graphics.js >> /scripts/logs/jd_sign_graphics.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "35 0,6-23/2 * * * node /scripts/jd_summer_movement.js >> /scripts/logs/jd_summer_movement.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 function main(){
     # 首次运行时拷贝docker目录下文件
