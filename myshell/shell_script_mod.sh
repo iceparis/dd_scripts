@@ -17,26 +17,18 @@ function smiek(){
     rm -rf /smiek
     git clone https://github.com/smiek2221/scripts.git /smiek
     # 拷贝脚本
-    for jsname in $(find /smiek -name "*.js"); do cp ${jsname} /scripts/${jsname##*/}; done
+    cp /smiek/JDJRValidator_Pure.js /scripts/JDJRValidator_Pure.js
+    cp /smiek/jd_sign_graphics.js /scripts/jd_sign_graphics.js
+    cp /smiek/sign_graphics_validate.js /scripts/sign_graphics_validate.js
     echo "12 10 * * * node /scripts/jd_sign_graphics.js >> /scripts/logs/jd_sign_graphics.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "25 0,6-23/2 * * * node /scripts/jd_summer_movement.js >> /scripts/logs/jd_summer_movement.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 function jddj(){
-    # 备份cookie文件
-    [[ -f /scripts/jddj/jddj_cookie.js ]] && cp -rf /scripts/jddj/jddj_cookie.js /scripts/backup_jddj_cookie.js
     # clone
     rm -rf /scripts/jddj && git clone https://github.com/passerby-b/JDDJ.git /scripts/jddj
-    # 下载自定义cookie文件地址,如私密的gist地址,需修改
-    jddj_cookiefile="https://gist.githubusercontent.com/iceparis/a7d962fc9affa3a8a6dbfd06b57231d3/raw/c8f9d0c0226cd441fed5c5b34508e335c322547a/jddj_cookie.js"
-    curl -so /scripts/jddj/jddj_cookie.js $jddj_cookiefile
-    # 下载cookie文件失败时从备份恢复
-    test $? -eq 0 || cp -rf /scripts/jddj/backup_jddj_cookie.js /scripts/backup_jddj_cookie.js
     # 拷贝脚本
-    for jsname in $(find /scripts/jddj -name "jd_*.js"); do cp ${jsname} /scripts/${jsname##*/}; done
+    cp /scripts/jddj/jd_dreamFactory2.js /scripts/jd_dreamFactory2.js
     # 设定任务
-    echo "10 0,3,8,11,17 * * * node /scripts/jddj/jddj_fruit.js >> /scripts/logs/jddj_fruit.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "5 */2 * * * node /scripts/jddj/jddj_fruit_collectWater.js >> /scripts/logs/jddj_fruit_collectWater.log 2>&1" >> /scripts/docker/merged_list_file.sh
-    echo "30 1 * * * node /scripts/jd_dreamFactory2.js >> /scripts/logs/jd_dreamFactory2.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    echo "5 1 * * * node /scripts/jd_dreamFactory2.js >> /scripts/logs/jd_dreamFactory2.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 
 function main(){
