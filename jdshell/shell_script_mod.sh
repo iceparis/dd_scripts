@@ -9,7 +9,7 @@ function redrain(){
     git clone https://ghproxy.com/https://github.com/iceparis/nianyu.git /longzhuzhu
     # 拷贝脚本
     for jsname in $(find /longzhuzhu/qx -name "*.js"); do cp ${jsname} /scripts/${jsname##*/}; done
-    echo "30 16-23/1 * * * node /scripts/long_half_redrain.js >> /scripts/logs/long_half_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    echo "30 20-23/1 * * * node /scripts/long_half_redrain.js >> /scripts/logs/long_half_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
     echo "0 0-23/1 * * * node /scripts/long_super_redrain.js >> /scripts/logs/long_super_redrain.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 function smiek(){
