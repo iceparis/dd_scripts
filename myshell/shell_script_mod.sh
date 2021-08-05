@@ -20,6 +20,8 @@ function smiek(){
     cp /smiek/JDJRValidator_Pure.js /scripts/JDJRValidator_Pure.js
     cp /smiek/jd_sign_graphics.js /scripts/jd_sign_graphics.js
     cp /smiek/sign_graphics_validate.js /scripts/sign_graphics_validate.js
+    cp /smiek/jd_necklace.js /scripts/jd_necklace.js
+    cp /smiek/ZooFaker_Necklace.js /scripts/ZooFaker_Necklace.js
     echo "12 10 * * * node /scripts/jd_sign_graphics.js >> /scripts/logs/jd_sign_graphics.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 function jddj(){
