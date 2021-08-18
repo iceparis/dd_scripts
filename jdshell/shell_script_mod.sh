@@ -6,7 +6,7 @@
 function smiek(){
     # https://github.com/smiek2221/scripts
     rm -rf /smiek
-    git clone https://ghproxy.com/https://github.com/smiek2221/scripts.git /smiek
+    git clone https://github.com/smiek2221/scripts.git /smiek
     # 拷贝脚本
     cp /smiek/JDJRValidator_Pure.js /scripts/JDJRValidator_Pure.js
     cp /smiek/jd_sign_graphics.js /scripts/jd_sign_graphics.js
