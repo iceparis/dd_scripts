@@ -13,10 +13,26 @@ function smiek(){
     cp /smiek/sign_graphics_validate.js /scripts/sign_graphics_validate.js
     echo "2 0 * * * node /scripts/jd_sign_graphics.js >> /scripts/logs/jd_sign_graphics.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
+function star261(){
+     if [ ! -d "/star261/" ]; then
+        echo "未检查到star261仓库脚本，初始化下载相关脚本..."
+        git clone -b main https://github.com/star261/jd.git /star261
+    else
+        echo "更新star261脚本相关文件..."
+        git -C /star261 reset --hard
+        git -C /star261 pull origin main --rebase
+    fi
+    cp -f /star261/scripts/jd_jxmc.js /scripts
+    cp -f /star261/scripts/jd_fan.js /scripts
+    cp -f /star261/scripts/jd_productZ4Brand.js /scripts
+     echo "1 0,22 * * * node /scripts/jd_fan.js >> /scripts/logs/jd_fan.log 2>&1" >> /scripts/docker/merged_list_file.sh
+     echo "1 0,22 * * * node /scripts/jd_productZ4Brand.js >> /scripts/logs/jd_productZ4Brand.log 2>&1" >> /scripts/docker/merged_list_file.sh
+}
 function main(){
     # 首次运行时拷贝docker目录下文件
     [[ ! -d /jd_diy ]] && mkdir /jd_diy && cp -rf /scripts/docker/* /jd_diy
     smiek
+    star261
     # 拷贝docker目录下文件供下次更新时对比
     cp -rf /scripts/docker/* /jd_diy
 }
