@@ -6,7 +6,7 @@
 function smiek(){
     # https://github.com/smiek2221/scripts
     rm -rf /smiek
-    git clone https://github.com/smiek2221/scripts /smiek
+    git clone https://github.com/smiek2221/scripts.git /smiek
     # 拷贝脚本
     cp /smiek/JDJRValidator_Pure.js /scripts/JDJRValidator_Pure.js
     cp /smiek/jd_sign_graphics.js /scripts/jd_sign_graphics.js
@@ -26,7 +26,7 @@ function star261(){
     cp -f /star261/scripts/jd_fan.js /scripts
     cp -f /star261/scripts/jd_productZ4Brand.js /scripts
      echo "1 0,22 * * * node /scripts/jd_fan.js >> /scripts/logs/jd_fan.log 2>&1" >> /scripts/docker/merged_list_file.sh
-     echo "1 0,22 * * * node /scripts/jd_productZ4Brand.js >> /scripts/logs/jd_productZ4Brand.log 2>&1" >> /scripts/docker/merged_list_file.sh
+     echo "5 9 * * * node /scripts/jd_productZ4Brand.js >> /scripts/logs/jd_productZ4Brand.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 function main(){
     # 首次运行时拷贝docker目录下文件
