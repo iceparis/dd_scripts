@@ -23,9 +23,7 @@ function star261(){
         git -C /star261 pull origin main --rebase
     fi
     cp -f /star261/scripts/jd_jxmc.js /scripts
-    cp -f /star261/scripts/jd_fan.js /scripts
     cp -f /star261/scripts/jd_productZ4Brand.js /scripts
-     echo "1 0,22 * * * node /scripts/jd_fan.js >> /scripts/logs/jd_fan.log 2>&1" >> /scripts/docker/merged_list_file.sh
      echo "5 9 * * * node /scripts/jd_productZ4Brand.js >> /scripts/logs/jd_productZ4Brand.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 function main(){
