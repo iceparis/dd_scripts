@@ -25,9 +25,11 @@ function star261(){
     cp -f /star261/scripts/jd_jxmc.js /scripts
     cp -f /star261/scripts/jd_productZ4Brand.js /scripts
     cp -f /star261/scripts/jd_ddworld.js /scripts
+    cp -f /star261/scripts/jd_decompression.js /scripts
 
      echo "8 21 * * * node /scripts/jd_productZ4Brand.js >> /scripts/logs/jd_productZ4Brand.log 2>&1" >> /scripts/docker/merged_list_file.sh
      echo "28 9 * * * node /scripts/jd_ddworld.js >> /scripts/logs/jd_ddworld.log 2>&1" >> /scripts/docker/merged_list_file.sh
+     echo "5 6,18 1-16,21-30 9,10 * node /scripts/jd_decompression.js >> /scripts/logs/jd_decompression.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 function main(){
     # 首次运行时拷贝docker目录下文件
