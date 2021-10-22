@@ -11,7 +11,7 @@ function smiek(){
     cp /smiek/JDJRValidator_Pure.js /scripts/JDJRValidator_Pure.js
     cp /smiek/jd_sign_graphics.js /scripts/jd_sign_graphics.js
     cp /smiek/sign_graphics_validate.js /scripts/sign_graphics_validate.js
-    echo "2 0 * * * node /scripts/jd_sign_graphics.js >> /scripts/logs/jd_sign_graphics.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    echo "6 0,1 * * * node /scripts/jd_sign_graphics.js >> /scripts/logs/jd_sign_graphics.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 function star261(){
      if [ ! -d "/star261/" ]; then
