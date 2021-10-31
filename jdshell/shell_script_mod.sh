@@ -6,7 +6,7 @@
 function smiek(){
     # https://github.com/smiek2221/scripts
     rm -rf /smiek
-    git clone https://mirror.ghproxy.com/https://github.com/smiek2221/scripts.git /smiek
+    git clone https://github.com/smiek2221/scripts.git /smiek
     # 拷贝脚本
     cp /smiek/JDJRValidator_Pure.js /scripts/JDJRValidator_Pure.js
     cp /smiek/jd_sign_graphics.js /scripts/jd_sign_graphics.js
@@ -16,7 +16,7 @@ function smiek(){
 function star261(){
      if [ ! -d "/star261/" ]; then
         echo "未检查到star261仓库脚本，初始化下载相关脚本..."
-        git clone -b main https://mirror.ghproxy.com/https://github.com/star261/jd.git /star261
+        git clone -b main https://github.com/star261/jd.git /star261
     else
         echo "更新star261脚本相关文件..."
         git -C /star261 reset --hard
