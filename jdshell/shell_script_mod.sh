@@ -14,9 +14,7 @@ function star261(){
     fi
     cp -f /star261/scripts/jd_jxmc.js /scripts
     cp -f /star261/scripts/jd_productZ4Brand.js /scripts
-    cp -f /star261/scripts/jd_ddworld.js /scripts
      echo "25 23 * * * node /scripts/jd_productZ4Brand.js >> /scripts/logs/jd_productZ4Brand.log 2>&1" >> /scripts/docker/merged_list_file.sh
-     echo "1 6,9 * * * node /scripts/jd_ddworld.js >> /scripts/logs/jd_ddworld.log 2>&1" >> /scripts/docker/merged_list_file.sh
 }
 function main(){
     # 首次运行时拷贝docker目录下文件
